@@ -57,7 +57,7 @@ pipeline {
             echo "Pipeline failed"
             emailext subject: "Pipeline Failure - ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
                       body: "The pipeline failed.",
-                      to: "akhilaraji2013@example.com"
+                      to: "akhilaraji2013@gmail.com"
         }
     }
 }
