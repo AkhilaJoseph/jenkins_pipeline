@@ -14,6 +14,21 @@ pipeline {
                 // Running with selenium
             }
         }
+        post {
+        success {
+            echo "Test succeeded"
+            mail to: "akhilaraji2013@gmail.com
+            subject: "Pipeline Success - ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
+            body: "The pipeline executed successfully.Also Attached the logs. ${BUILD_LOG, maxLines=9999, escapeHtml=false}"
+            
+        }
+        failure {
+            echo "Pipeline failed"
+            mail to: "akhilaraji2013@gmail.com
+            subject: "Pipeline Success - ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
+            body: "The pipeline executed successfully.Also Attached the logs. ${BUILD_LOG, maxLines=9999, escapeHtml=false}"
+        }
+    }
         stage('Code Analysis') {
             steps {
                 echo "Performing code analysis using SonarQube"
@@ -46,18 +61,5 @@ pipeline {
         }
     }
     
-    post {
-        success {
-            echo "Pipeline succeeded"
-            mailext subject: "Pipeline Success - ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
-                      body: "The pipeline executed successfully.",
-                      to: "akhilaraji2013@gmail.com"
-        }
-        failure {
-            echo "Pipeline failed"
-            emailext subject: "Pipeline Failure - ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
-                      body: "The pipeline failed.",
-                      to: "akhilaraji2013@gmail.com"
-        }
-    }
+    
 }
