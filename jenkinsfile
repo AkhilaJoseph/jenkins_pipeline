@@ -17,14 +17,14 @@ pipeline {
         post {
         success {
             echo "Test succeeded"
-            mail to: "akhilaraji2013@gmail.com
+            mail to: "akhilaraji2013@gmail.com"
             subject: "Pipeline Success - ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
             body: "The pipeline executed successfully.Also Attached the logs. ${BUILD_LOG, maxLines=9999, escapeHtml=false}"
             
         }
         failure {
             echo "Pipeline failed"
-            mail to: "akhilaraji2013@gmail.com
+            mail to: "akhilaraji2013@gmail.com"
             subject: "Pipeline Success - ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
             body: "The pipeline executed successfully.Also Attached the logs. ${BUILD_LOG, maxLines=9999, escapeHtml=false}"
         }
