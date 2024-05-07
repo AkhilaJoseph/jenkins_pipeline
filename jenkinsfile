@@ -16,7 +16,7 @@ pipeline {
         post {
                 success {
                     emailext(
-                        to: "recipient@example.com",
+                        to: "akhilaraji2013@gmail.com",
                         subject: "Test Stage - Success",
                         body: "The test stage executed successfully.",
                         attachmentsPattern: 'target/*.log'
@@ -24,7 +24,7 @@ pipeline {
                 }
                 failure {
                     emailext(
-                        to: "recipient@example.com",
+                        to: "akhilaraji2013@gmail.com",
                         subject: "Test Stage - Failure",
                         body: "The test stage failed.",
                         attachmentsPattern: 'target/*.log'
@@ -46,7 +46,7 @@ pipeline {
             post {
                 success {
                     emailext(
-                        to: "recipient@example.com",
+                        to: "akhilaraji2013@gmail.com",
                         subject: "Security Scan Stage - Success",
                         body: "The security scan stage executed successfully.",
                         attachmentsPattern: 'security/*.log'
@@ -54,7 +54,7 @@ pipeline {
                 }
                 failure {
                     emailext(
-                        to: "recipient@example.com",
+                        to: "akhilaraji2013@gmail.com",
                         subject: "Security Scan Stage - Failure",
                         body: "The security scan stage failed.",
                         attachmentsPattern: 'security/*.log'
