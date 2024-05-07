@@ -13,26 +13,25 @@ pipeline {
                 echo "Running unit tests and integration tests using Selenium"
                 // Running with selenium
             }
-        }
         post {
-        success {
-            echo "Test succeeded"
-            emailext(
-            to: "akhilaraji2013@gmail.com",
-            subject: "Pipeline Success - ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
-            body: "The pipeline executed successfully. Also Attached the logs. ${BUILD_LOG, maxLines=9999, escapeHtml=false}"
-        )
-            
+                success {
+                    emailext(
+                        to: "recipient@example.com",
+                        subject: "Test Stage - Success",
+                        body: "The test stage executed successfully.",
+                        attachmentsPattern: 'target/*.log'
+                    )
+                }
+                failure {
+                    emailext(
+                        to: "recipient@example.com",
+                        subject: "Test Stage - Failure",
+                        body: "The test stage failed.",
+                        attachmentsPattern: 'target/*.log'
+                    )
+                }
+            }
         }
-        failure {
-            echo "Pipeline failed"
-             emailext(
-            to: "akhilaraji2013@gmail.com",
-            subject: "Pipeline Failure - ${env.JOB_NAME} build ${env.BUILD_NUMBER}",
-            body: "The pipeline failed. Also Attached the logs. ${BUILD_LOG, maxLines=9999, escapeHtml=false}"
-        )
-        }
-    }
         stage('Code Analysis') {
             steps {
                 echo "Performing code analysis using SonarQube"
@@ -44,7 +43,26 @@ pipeline {
                 echo "Performing security scan using OWASP"
                 // Perform security scan using OWASP
             }
+            post {
+                success {
+                    emailext(
+                        to: "recipient@example.com",
+                        subject: "Security Scan Stage - Success",
+                        body: "The security scan stage executed successfully.",
+                        attachmentsPattern: 'security/*.log'
+                    )
+                }
+                failure {
+                    emailext(
+                        to: "recipient@example.com",
+                        subject: "Security Scan Stage - Failure",
+                        body: "The security scan stage failed.",
+                        attachmentsPattern: 'security/*.log'
+                    )
+                }
+            }
         }
+        
         stage('Deploy to Staging') {
             steps {
                 echo "Deploying the application to staging server (AWS EC2 instance)"
