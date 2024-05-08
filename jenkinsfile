@@ -24,10 +24,7 @@ pipeline {
                 failure {
                         mail to: "akhilaraji2013@gmail.com",
                         subject: "Test Stage - Failure",
-                        body: "The test stage failed. Attached the log file",
-                        attachments: [
-                 "${logFilePath.getName()}": logContents
-             ]
+                        body: "The test stage failed. Attached the log file"
                 }
             }
         }
@@ -47,18 +44,12 @@ pipeline {
                     
                         mail to: "akhilaraji2013@gmail.com",
                         subject: "Security Scan Stage - Success",
-                        body: "The security scan stage executed successfully. Attached the log file",
-                        attachments: [
-                 "${logFilePath.getName()}": logContents
-             ]
+                        body: "The security scan stage executed successfully. Attached the log file"
                 }
                 failure {
                        mail to: "akhilaraji2013@gmail.com",
                         subject: "Security Scan Stage - Failure",
-                        body: "The security scan stage failed. Attached the log file",
-                        attachments: [
-                 "${logFilePath.getName()}": logContents
-             ]
+                        body: "The security scan stage failed. Attached the log file"
                 }
             }
         }
