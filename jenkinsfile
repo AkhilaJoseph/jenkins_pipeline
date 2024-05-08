@@ -20,7 +20,7 @@ pipeline {
                         def logFileName = logFilePath.tokenize("/")[-1]
                         mail to: "akhilaraji2013@gmail.com",
                         subject: "Test Stage - Success",
-                        body: "The test stage Succeeded."
+                        body: "The test stage Succeeded.",
                         attachments: "${logFilePath}",
                         attachmentsPattern: logFileName
                 }
