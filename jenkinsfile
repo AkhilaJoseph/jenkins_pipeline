@@ -12,7 +12,7 @@ pipeline {
             steps {
                 echo "Running unit tests and integration tests using Selenium"
                 // Running with selenium
-            }
+    
         post {
                 success {
                         def logFilePath = "${env.WORKSPACE}/build.log"
@@ -31,6 +31,7 @@ pipeline {
                 }
             }
         }
+}
         stage('Code Analysis') {
             steps {
                 echo "Performing code analysis using SonarQube"
