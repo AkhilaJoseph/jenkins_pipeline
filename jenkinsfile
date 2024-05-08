@@ -15,20 +15,14 @@ pipeline {
             }
         post {
                 success {
-                    emailext(
-                        to: "akhilaraji2013@gmail.com",
+                        mail to: "akhilaraji2013@gmail.com",
                         subject: "Test Stage - Success",
-                        body: "The test stage executed successfully.",
-                        attachmentsPattern: 'target/*.log'
-                    )
+                        body: "The test stage executed successfully."
                 }
                 failure {
-                    emailext(
-                        to: "akhilaraji2013@gmail.com",
+                        mail to: "akhilaraji2013@gmail.com",
                         subject: "Test Stage - Failure",
-                        body: "The test stage failed.",
-                        attachmentsPattern: 'target/*.log'
-                    )
+                        body: "The test stage failed."
                 }
             }
         }
@@ -45,20 +39,15 @@ pipeline {
             }
             post {
                 success {
-                    emailext(
-                        to: "akhilaraji2013@gmail.com",
+                    
+                        mail to: "akhilaraji2013@gmail.com",
                         subject: "Security Scan Stage - Success",
-                        body: "The security scan stage executed successfully.",
-                        attachmentsPattern: 'security/*.log'
-                    )
+                        body: "The security scan stage executed successfully." 
                 }
                 failure {
-                    emailext(
-                        to: "akhilaraji2013@gmail.com",
+                       mail to: "akhilaraji2013@gmail.com",
                         subject: "Security Scan Stage - Failure",
-                        body: "The security scan stage failed.",
-                        attachmentsPattern: 'security/*.log'
-                    )
+                        body: "The security scan stage failed."
                 }
             }
         }
