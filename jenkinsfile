@@ -12,6 +12,7 @@ pipeline {
             steps {
                 echo "Running unit tests and integration tests using Selenium"
                 // Running with selenium
+}
     
         post {
                 success {
@@ -30,8 +31,8 @@ pipeline {
                         body: "The test stage failed. Attached the log file"
                 }
             }
-        }
 }
+
         stage('Code Analysis') {
             steps {
                 echo "Performing code analysis using SonarQube"
