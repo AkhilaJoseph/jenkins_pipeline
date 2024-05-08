@@ -17,17 +17,18 @@ pipeline {
                 success {
                     emailext subject: 'Test stage- success',
                     body: "The test stage success. Attached the log file",
-                    to: 'akhila2013@gmail.com',
+                    to: 'akhilaraji2013@gmail.com',
                     attachLog: true
                 }
                 failure {
                     emailext subject: 'Test stage- failed',
                     body: "The test stage failed. Attached the log file",
-                    to: 'akhila2013@gmail.com',
+                    to: 'akhilaraji2013@gmail.com',
                     attachLog: true
                 }
             }
-        }
+}
+
         stage('Code Analysis') {
             steps {
                 echo "Performing code analysis using SonarQube"
