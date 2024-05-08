@@ -18,8 +18,7 @@ pipeline {
                        def logUrl = "${env.BUILD_URL}consoleText"
                         mail to: "akhilaraji2013@gmail.com",
                         subject: "Test Stage - Failure",
-                        body: "The test stage failed. Attached the log file \n\nBuild Log URL: ${logUrl}",
-                        
+                        body: "The test stage failed. Attached the log file \n\nBuild Log URL: ${logUrl}"
                 }
                 failure {
                         mail to: "akhilaraji2013@gmail.com",
