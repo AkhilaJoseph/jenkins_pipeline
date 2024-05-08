@@ -13,20 +13,16 @@ pipeline {
                 echo "Running unit tests and integration tests using Selenium"
                 // Running with selenium
 }
+}
     
         post {
-                success {
+                always {
                         emailext body: 'Test Message',
                         subject: 'Test Subject',
                         to: 'akhila2013@gmail.com'
                 }
-                failure {
-                        mail to: "akhilaraji2013@gmail.com",
-                        subject: "Test Stage - Failure",
-                        body: "The test stage failed. Attached the log file"
-                }
+               
             }
-}
 
         stage('Code Analysis') {
             steps {
