@@ -12,27 +12,22 @@ pipeline {
             steps {
                 echo "Running unit tests and integration tests using Selenium"
                 // Running with selenium
-}
-    
-        post {
-                success {
-                        emailext subject: 'Test stage- success',
-                            body: "The test stage success. Attached the log file",
-                            to: 'akhila2013@gmail.com'
-                            attachLog : true
-                }
-                 failure {
-                        emailext subject: 'Test stage- failed',
-                            body: "The test stage failed. Attached the log file",
-                            to: 'akhila2013@gmail.com'
-                            attachLog : true
-                }
-
-
-               
             }
-}
-
+            post {
+                success {
+                    emailext subject: 'Test stage- success',
+                    body: "The test stage success. Attached the log file",
+                    to: 'akhila2013@gmail.com',
+                    attachLog: true
+                }
+                failure {
+                    emailext subject: 'Test stage- failed',
+                    body: "The test stage failed. Attached the log file",
+                    to: 'akhila2013@gmail.com',
+                    attachLog: true
+                }
+            }
+        }
         stage('Code Analysis') {
             steps {
                 echo "Performing code analysis using SonarQube"
@@ -46,20 +41,19 @@ pipeline {
             }
             post {
                 success {
-                        emailext subject: "Security Scan Stage - Success",
-                                body: "The security scan stage executed successfully. Attached the log file",
-                                to: "akhilaraji2013@gmail.com",
-                                attachLog : true
+                    emailext subject: "Security Scan Stage - Success",
+                    body: "The security scan stage executed successfully. Attached the log file",
+                    to: "akhilaraji2013@gmail.com",
+                    attachLog: true
                 }
                 failure {
-                        emailext subject: "Security Scan Stage - Failure",
-                               body: "The security scan stage failed. Attached the log file",
-                               mail to: "akhilaraji2013@gmail.com",
-                               attachLog : true
+                    emailext subject: "Security Scan Stage - Failure",
+                    body: "The security scan stage failed. Attached the log file",
+                    to: "akhilaraji2013@gmail.com",
+                    attachLog: true
                 }
             }
         }
-        
         stage('Deploy to Staging') {
             steps {
                 echo "Deploying the application to staging server (AWS EC2 instance)"
@@ -79,6 +73,4 @@ pipeline {
             }
         }
     }
-    
-    
 }
