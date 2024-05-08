@@ -15,11 +15,12 @@ pipeline {
             }
         post {
                 success {
-                       emailext mimeType: 'text/plain',
-                       subject: "Test Stage - Success",
-                       body: "The test stage executed successfully.",
-                       to: "akhilaraji2013@gmail.com",
-                       attachmentsPattern: "${env.WORKSPACE}/build.log"
+                        def logFilePath = "${env.WORKSPACE}/build.log"
+                        writeFile file: logFilePath, text: currentBuild.rawBuild.getLog()
+                        mail to: "akhilaraji2013@gmail.com",
+                        subject: "Test Stage - Failure",
+                        body: "The test stage failed. Attached the log file",
+                        attachment:"${logFilePath}"
                 }
                 failure {
                         mail to: "akhilaraji2013@gmail.com",
