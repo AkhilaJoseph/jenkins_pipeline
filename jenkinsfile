@@ -18,13 +18,17 @@ pipeline {
                         mail to: "akhilaraji2013@gmail.com",
                         subject: "Test Stage - Success",
                         body: "The test stage executed successfully. Attached the log file",
-                        attachments: "${currentBuild.rawBuild.getLogFile()}"
+                        attachments: [
+                             "${logFilePath.getName()}": logContents
+                         ]
                 }
                 failure {
                         mail to: "akhilaraji2013@gmail.com",
                         subject: "Test Stage - Failure",
                         body: "The test stage failed. Attached the log file",
-                        attachments: "${currentBuild.rawBuild.getLogFile()}"
+                        attachments: [
+                 "${logFilePath.getName()}": logContents
+             ]
                 }
             }
         }
@@ -45,13 +49,17 @@ pipeline {
                         mail to: "akhilaraji2013@gmail.com",
                         subject: "Security Scan Stage - Success",
                         body: "The security scan stage executed successfully. Attached the log file",
-                        attachments: "${currentBuild.rawBuild.getLogFile()}"
+                        attachments: [
+                 "${logFilePath.getName()}": logContents
+             ]
                 }
                 failure {
                        mail to: "akhilaraji2013@gmail.com",
                         subject: "Security Scan Stage - Failure",
                         body: "The security scan stage failed. Attached the log file",
-                        attachments: "${currentBuild.rawBuild.getLogFile()}"
+                        attachments: [
+                 "${logFilePath.getName()}": logContents
+             ]
                 }
             }
         }
