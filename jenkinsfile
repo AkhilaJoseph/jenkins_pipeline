@@ -15,9 +15,14 @@ pipeline {
             }
         post {
                 success {
+                        def logFilePath = "${env.WORKSPACE}/build.log"
+                        writeFile file: logFilePath, text: currentBuild.rawBuild.getLog()
+                        def logFileName = logFilePath.tokenize("/")[-1]
                         mail to: "akhilaraji2013@gmail.com",
-                        subject: "Test Stage - Failure",
-                        body: "The test stage failed. Log URL: ${env.BUILD_URL}"
+                        subject: "Test Stage - Success",
+                        body: "The test stage Succeeded."
+                        attachments: "${logFilePath}",
+                        attachmentsPattern: logFileName
                 }
                 failure {
                         mail to: "akhilaraji2013@gmail.com",
